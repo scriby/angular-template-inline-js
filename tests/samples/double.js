@@ -1,0 +1,1 @@
+{ template: '<!--template path: ./double.html-->\nold contents\n<!--end template-->' }
