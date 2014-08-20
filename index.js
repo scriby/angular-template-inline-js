@@ -19,7 +19,8 @@ exports.compile = function(src, options) {
     '([\'"]?:)' + //Optionally followed by a single or double quote, then a colon (templateUrl: or 'templateUrl':, etc.)
     '\\s*[\'"]' + //Optional whitespace, then a single or double quote to indicate a string literal
     '([^\'"]+)' + //The template path
-    '[\'"]' //Closing single or double quote
+    '[\'"]', //Closing single or double quote
+     'g'
   );
 
   var compiled = src.replace(templateUrlRegex, function(match, endCharAndColon, templatePath){

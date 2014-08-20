@@ -1,0 +1,1 @@
+var a = { templateUrl: './multi.html' }; var b = { templateUrl: './multi.html' };

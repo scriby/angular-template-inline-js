@@ -40,4 +40,13 @@ describe('angular-template-inline-js', function(){
 
     assert.equal(compiled, "{ template: 'escape\\ncontents\\n\\'\\n\\\\' }");
   });
+
+  it('should compile multiple templates in one file', function(){
+    var compiled = compiler.compile(
+      fs.readFileSync(basePath + '/multi.js', 'utf8'),
+      { basePath: basePath }
+    );
+
+    assert.equal(compiled, "var a = { template: 'multi contents' }; var b = { template: 'multi contents' };");
+  });
 });
