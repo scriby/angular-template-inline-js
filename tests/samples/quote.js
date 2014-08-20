@@ -1,0 +1,1 @@
+{ "templateUrl": "./quote.html" }

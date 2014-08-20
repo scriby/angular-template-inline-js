@@ -1,0 +1,1 @@
+{ inlineTemplate: './named.html' }
