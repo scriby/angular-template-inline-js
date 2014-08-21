@@ -1,1 +1,1 @@
-{ template: '' + 'old contents<!--template path: ./double.html-->' }
+{ template: ('./double.html', 'old contents') }
