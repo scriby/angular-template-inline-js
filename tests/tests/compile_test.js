@@ -11,7 +11,7 @@ describe('angular-template-inline-js', function(){
       { basePath: basePath }
     );
 
-    assert.equal(compiled, "{ template: '<!--template path: ./simple.html-->\\nsimple contents\\n<!--end template-->' }");
+    assert.equal(compiled, "{ template: '' + 'simple contents<!--template path: ./simple.html-->' }");
   });
 
   it('should compile a template with quotes', function(){
@@ -20,7 +20,7 @@ describe('angular-template-inline-js', function(){
       { basePath: basePath }
     );
 
-    assert.equal(compiled, "{ \"template\": '<!--template path: ./quote.html-->\\nquote contents\\n<!--end template-->' }");
+    assert.equal(compiled, "{ \"template\": '' + 'quote contents<!--template path: ./quote.html-->' }");
   });
 
   it('should compile a template using a specified key name', function(){
@@ -29,7 +29,7 @@ describe('angular-template-inline-js', function(){
       { key: 'inlineTemplate', basePath: basePath }
     );
 
-    assert.equal(compiled, "{ template: '<!--template path: ./named.html-->\\nnamed contents\\n<!--end template-->' }");
+    assert.equal(compiled, "{ template: '' + 'named contents<!--template path: ./named.html-->' }");
   });
 
   it('should escape template contents', function(){
@@ -38,7 +38,7 @@ describe('angular-template-inline-js', function(){
       { basePath: basePath }
     );
 
-    assert.equal(compiled, "{ template: '<!--template path: ./escape.html-->\\nescape\\ncontents\\n\\'\\n\\\\\\n<!--end template-->' }");
+    assert.equal(compiled, "{ template: '' + 'escape\\ncontents\\n\\'\\n\\\\\<!--template path: ./escape.html-->' }");
   });
 
   it('should compile multiple templates in one file', function(){
@@ -47,7 +47,7 @@ describe('angular-template-inline-js', function(){
       { basePath: basePath }
     );
 
-    assert.equal(compiled, "var a = { template: '<!--template path: ./multi.html-->\\nmulti contents\\n<!--end template-->' }; var b = { template: '<!--template path: ./multi.html-->\\nmulti contents\\n<!--end template-->' };");
+    assert.equal(compiled, "var a = { template: '' + 'multi contents<!--template path: ./multi.html-->' }; var b = { template: '' + 'multi contents<!--template path: ./multi.html-->' };");
   });
 
   it('should compile a template twice', function(){
@@ -56,6 +56,6 @@ describe('angular-template-inline-js', function(){
       { basePath: basePath }
     );
 
-    assert.equal(compiled, "{ template: '<!--template path: ./double.html-->\\ndouble contents\\n<!--end template-->' }");
+    assert.equal(compiled, "{ template: '' + 'double contents<!--template path: ./double.html-->' }");
   });
 });

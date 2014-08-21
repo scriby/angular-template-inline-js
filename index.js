@@ -23,7 +23,7 @@ exports.compile = function(src, options) {
      'g' //Match multiple occurrences within the source
   );
 
-  var compiledTemplateRegex = /template([\'"]?:) '<!--template path: (.+?)-->.*?<!--end template-->'/g;
+  var compiledTemplateRegex = /template([\'"]?:) '.*?<!--template path: (.+?)-->'/g;
 
   var readTemplate = function(templatePath) {
     return fs.readFileSync(path.join(options.basePath, templatePath), 'utf8');
@@ -32,10 +32,9 @@ exports.compile = function(src, options) {
   var handleMatch = function(match, endCharAndColon, templatePath) {
     var contents = readTemplate(templatePath);
 
-    return 'template' + endCharAndColon +
-      " '<!--template path: " + templatePath + '-->\\n' +
+    return 'template' + endCharAndColon + " '' + '" +
       escapeContents(contents) +
-      "\\n<!--end template-->'";
+      "<!--template path: " + templatePath + "-->'";
   };
 
   //Update references in code that look something like { templateUrl: './index.html' }
