@@ -56,6 +56,15 @@ describe('angular-template-inline-js', function(){
       { basePath: basePath }
     );
 
-    assert.equal(compiled, "{ template: ('./double.html', 'double contents' + '') }");
+    assert.equal(compiled, "{ template: ('./double.html', 'double contents' + '') }\ntemplate = ('./double.html', 'double contents' + '')");
+  });
+
+  it('should compile a templateUrl using equals instead of colon', function(){
+    var compiled = compiler.compile(
+      fs.readFileSync(basePath + '/equals.js', 'utf8'),
+      { basePath: basePath }
+    );
+
+    assert.equal(compiled, "this.template = ('./equals.html', 'equals contents' + '')");
   });
 });
