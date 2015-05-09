@@ -9,5 +9,8 @@
   "devDependencies": {
     "grunt": "0.4.5",
     "grunt-mocha-test": "0.11.0"
+  },
+  "bin": {
+    "template-inline": "bin/angular-template-inline-js.js"
   }
 }
