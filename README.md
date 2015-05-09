@@ -20,7 +20,7 @@ npm install angular-template-inline-js
 ```json
 "scripts": {
   "inline-piped-content": "cat app.js | template-inline --output dist/app.js",
-  "inline-file-content": "template-inline template-inline --output dist/app.js app.js"
+  "inline-file-content": "template-inline --output dist/app.js app.js"
 }
 ```
 Then on command line run:
