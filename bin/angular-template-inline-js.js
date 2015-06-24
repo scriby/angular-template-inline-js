@@ -21,7 +21,7 @@ for (var i = 0; i < args.length; i++) {
         case '--key':
             options.key = args[++i];
             break;
-        case '--output-file':
+        case '--output':
             options.outputFile = args[++i];
             break;
         default:
