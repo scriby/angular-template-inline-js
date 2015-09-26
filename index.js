@@ -1,5 +1,6 @@
 var fs = require('fs');
 var path = require('path');
+var minify = require('html-minifier').minify;
 
 var escapeContents = function(contents) {
   return contents.replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/\r?\n/g, '\\n');
@@ -13,7 +14,7 @@ exports.compile = function(src, options) {
   }
 
   var key = options.key || 'templateUrl';
-
+   
   var templateUrlRegex = new RegExp(
     key +
     '([\'"]?\\s*[:=])' + //Optionally followed by a single or double quote, then a colon (templateUrl: or 'templateUrl':, etc.)
@@ -25,15 +26,18 @@ exports.compile = function(src, options) {
 
   var compiledTemplateRegex = /template([\'"]?\s*[:=]) \('(.*)', '.*' \+ ''\)/g;
 
-  var readTemplate = function(templatePath) {
-    return fs.readFileSync(path.join(options.basePath, templatePath), 'utf8');
+  var readTemplate = function (templatePath) {
+  	return fs.readFileSync(path.join(options.basePath, templatePath), 'utf8');
   };
 
   var handleMatch = function(match, endCharAndColon, templatePath) {
     var contents;
 
-    try {
-      contents = readTemplate(templatePath);
+  	try {
+    	contents = readTemplate(templatePath);
+    	if (options.minify.useHtmlMin) {
+			contents = minify(contents, options.minify.options);
+		}
     } catch(e) {
       console.error(e);
       return match; //Leave it as-is if the referenced file doesn't exist

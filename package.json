@@ -6,6 +6,9 @@
     "type": "git",
     "url": "git://github.com/scriby/angular-template-inline-js"
   },
+  "dependencies" : {
+	"html-minifier": "^0.7.0"
+  },
   "devDependencies": {
     "grunt": "0.4.5",
     "grunt-mocha-test": "0.11.0"
